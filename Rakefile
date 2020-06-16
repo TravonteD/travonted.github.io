@@ -5,13 +5,13 @@
 source_files = FileList['src/*.md']
 articles = source_files.pathmap('articles/%n.html')
 
-task default: articles
+task default: [articles, 'style.css']
 
 directory 'articles'
 file articles => [source_files, :articles] do |t|
-  sh "pandoc -o #{t.name} #{t.source}"
+  sh "pandoc -so #{t.name} --template=template.html --css=../style.css #{t.source}"
 end
 
-# rule '.html' => ->{ "src/#{_1.ext('')}.md" } do |t|
-#   sh "pandoc -o articles/#{t.name} #{t.source}"
-# end
+file 'style.css' => 'style.scss' do |t|
+  sh "sass #{t.source} #{t.name}"
+end
