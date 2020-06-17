@@ -2,15 +2,15 @@
 
 This readme will serve as a todo list for things I'd like to add
 
-- [o] Home/Landing page
-  - [ ] Layout
-    - [ ] Navigation
-      - [ ] Articles
+- [O] Home/Landing page
+  - [o] Layout
+    - [o] Navigation
+      - [X] Articles
       - [ ] Pdf of my CV
   - [X] Style
   
-- [o] Build System
+- [O] Build System
   - [X] pandoc task
   - [X] sass
-  - [ ] generation of links
+  - [X] generation of links
   - [ ] rss feed
