@@ -14,9 +14,14 @@
       I'm Tray Dennis. A software developer and enthusiast.
     </section>
     <section class="article-list">
+      <h3 class="article-list_title">Articles:</h3>
+      <ul>
       <% @list.each do |item| %>
-        <a href="<%= item[:link] %>"><%= item[:title] %></a>
+        <li class="article-list_item">
+          <a href="<%= item[:link] %>"><%= item[:title] %></a>
+        </li>
       <% end %>
+      </ul>
     </section>
   </body>
 </html>
