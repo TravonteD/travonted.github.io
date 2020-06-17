@@ -12,7 +12,7 @@ directory 'articles'
 task default: articles + ['style.css'] + page_files
 
 desc 'Generates the article pages using the template'
-file articles => [source_files]
+file articles => source_files
 
 desc 'Builds the stylesheet using sass'
 file 'style.css' => 'style.scss' do |t|
@@ -26,11 +26,11 @@ rule '.html' => ->{"src/#{_1.pathmap('%n')}.md"} do |t|
   sh "pandoc -so #{t.name} --template=template.html --css=../style.css #{t.source}"
 end
  
-rule 'index.html' do |t|
+rule 'index.html' => 'index.html.erb' do |t|
   render(t)
 end
 
-rule 'articles.html' do |t|
+rule 'articles.html' => 'articles.html.erb' do |t|
   render(t)
 end
 
