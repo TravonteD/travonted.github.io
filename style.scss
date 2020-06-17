@@ -10,25 +10,21 @@ body {
     margin: auto;
 }
 body, a {
-    background-color: #fbf1c7;
-    color: #3c3836;
+    background-color: #fff;
+    color: #404040;
 }
 
 nav {
-    border-bottom: solid #3c3836 2px;
+    text-align: center;
+    border-bottom: solid #EAEAEA 2px;
     margin-bottom: 20px;
     a {
-        &:first-child {
-            li {
-                padding-left: 0px;
-            }
-        }
         li {
             display: inline-block;
             padding: 20px;
             &:hover {
-                color: #fbf1c7;
-                background-color: #3c3836;
+                background-color: #404040;
+                color: #FFF;
             }
         }
     }
@@ -61,4 +57,10 @@ nav {
 
 .bio {
     margin: 20px auto;
+    p {
+        margin: 10px auto;
+    }
+    dt {
+        margin: 10px auto;
+    }
 }
