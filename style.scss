@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -8,9 +10,10 @@ body {
     width: 80%;
     max-width: 800px;
     margin: auto;
+    font-family: "Zilla Slab", serif;
 }
 body, a {
-    background-color: #fff;
+    background-color: #eee;
     color: #404040;
 }
 
@@ -41,7 +44,7 @@ nav {
         margin-bottom: 10px;
     }
     .sourceCode {
-        background-color: #f9f5d7;
+        background-color: #EAEAEA;
     }
 }
 
@@ -62,5 +65,6 @@ nav {
     }
     dt {
         margin: 10px auto;
+        font-weight: 510;
     }
 }
