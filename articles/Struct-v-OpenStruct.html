@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Struct v. OpenStruct v. Hash</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section class="article">
+<header id="title-block-header">
+<nav>
+  <a href="../index.html"><li>Travonte D.</li></a>
+  <a href="../index.html"><li>home</li></a>
+  <a href="../articles.html"><li>articles</li></a>
+  <a href="https://github.com/travonted"><li>github</li></a>
+</nav>
+<h1 class="title">Struct v. OpenStruct v. Hash</h1>
+</header>
+<h2 id="definitions">Definitions</h2>
+<p>Hashes are your basic key:value hash maps denoted by <code>{}</code> in ruby Contrary to the name Structs and Openstructs are different things Taken from the <a href="ruby-dock.org/core/ruby-struct">official docs</a>: “A Struct is a convenient way to bundle a number of attributes together, using accessor methods, without having to write an explicit class.. The Struct class generates new subclasses that hold a set of members and their values. For each member a reader and writer method is created similar to Module#attr_accessor.”</p>
+<p>Structs have the same implementation as classes so this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">class</span> <span class="dt">Person</span> &lt; <span class="dt">Struct</span>.new(<span class="st">:firstname</span>, <span class="st">:lastname</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>Is the same thing as this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">Person</span> = <span class="dt">Struct</span>.new(<span class="st">:firstname</span>, <span class="st">:lastname</span>)</span></code></pre></div>
+<p>Taken from the <a href="ruby-dock.org/core/ruby-struct">official docs</a>: “An OpenStruct is a data structure, similar to a Hash, that allows the definition of arbitrary attributes with their accompanying values. This is accomplished by using Ruby’s metaprogramming to define methods on the class itself.”</p>
+<h2 id="performance">Performance</h2>
+<p>Structs are almost <em>twice</em> as fast as hashes in my benchmarks and OpenStructs are significantly slower than Hashes since it actually implements one internally</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>require <span class="st">&#39;benchmark&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="dt">Benchmark</span>.bm <span class="dv">10</span> <span class="kw">do</span> |bench|</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  bench.report <span class="st">&quot;Hash: &quot;</span> <span class="kw">do</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="dv">50_000_000</span>.times <span class="kw">do</span> { <span class="st">name: &quot;John Smith&quot;</span>, <span class="st">age: </span><span class="dv">45</span> } <span class="kw">end</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">end</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  bench.report <span class="st">&quot;Struct: &quot;</span> <span class="kw">do</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    klass = <span class="dt">Struct</span>.new(<span class="st">:name</span>, <span class="st">:age</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="dv">50_000_000</span>.times <span class="kw">do</span> klass.new(<span class="st">&quot;John Smith&quot;</span>, <span class="dv">45</span>) <span class="kw">end</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="kw">end</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">#                user     system      total        real</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co"># Hash:        23.260000   0.090000  23.350000 ( 23.373496)</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co"># Struct:       8.380000   0.010000   8.390000 (  8.411647)</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">#</span></span></code></pre></div>
+<h2 id="usages">Usages</h2>
+<p>I personally use Structs whenever I notice that I am collecting data in a Hash that represents something. For instance:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>array_of_messages = []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>data.map <span class="kw">do</span> |x|</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  { <span class="st">text: &#39;text&#39;</span>, <span class="st">attachments: &#39;attachment&#39;</span> }</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>This looks fine, but compare it to this:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">Message</span> = <span class="dt">Struct</span>.new(<span class="st">:text</span>, <span class="st">:attachments</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>array_of_messages = []</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>data.map <span class="kw">do</span> |x|</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  <span class="dt">Message</span>.new(<span class="st">&#39;text&#39;</span>, <span class="st">&#39;attachment&#39;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>I prefer this implementation to the former as it’s both faster and clearer. It also holds the benefit of being able to identify what it is that we are passing around elsewhere in the code</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>array_of_messages.first.class</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">#=&gt; Message</span></span></code></pre></div>
+<p>I love having this ability to keep track of my data without relying on variable names and there’s some magic you can do as well</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">def</span> message(data) <span class="co"># Lets say that this is nil</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="kw">if</span> data</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>    <span class="dt">Message</span>.new(data)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  <span class="kw">else</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>    <span class="dt">Message</span>.new(<span class="dv">nil</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>  <span class="kw">end</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>See what we did there? We used a Struct with canned data to ensure that whenever this method is called it will <em>never</em> return nil instead it will return an object of the type that we want just with nil values for its attributes. Using this method is a great way to prevent the dreaded “undefined method ‘name’ for nil Nil:class” because the canned object still has all of the methods that we expect so we can safely do things like</p>
+<pre><code>if message(data).text
+  puts texts
+else
+  puts &quot;nothing to see here&quot;
+end</code></pre>
+<p>without worrying about causing an undefined method runtime error.</p>
+<p>Structs have a great many uses and if you come from a C-like language you’re most likely familiar with their uses. Being able to create more readable code is a great benefit. The fact that it’s fast is a bonus!</p>
+</section>
+</body>
+</html>

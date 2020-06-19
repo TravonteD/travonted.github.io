@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  font-family: "Zilla Slab", serif;
+}
+
+body, a {
+  background-color: #eee;
+  color: #404040;
+}
+
+nav {
+  text-align: center;
+  border-bottom: solid #EAEAEA 2px;
+  margin-bottom: 20px;
+}
+nav a li {
+  display: inline-block;
+  padding: 20px;
+}
+nav a li:hover {
+  background-color: #404040;
+  color: #FFF;
+}
+
+.article header {
+  margin-bottom: 20px;
+}
+.article header .title {
+  text-align: center;
+}
+.article h2, .article p {
+  margin-bottom: 10px;
+}
+.article .sourceCode {
+  background-color: #EAEAEA;
+}
+
+.article-list_title {
+  margin-bottom: 10px;
+}
+.article-list_item {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.bio {
+  margin: 20px auto;
+}
+.bio p {
+  margin: 10px auto;
+}
+.bio dt {
+  margin: 10px auto;
+  font-weight: 510;
+}
+
+/*# sourceMappingURL=style.css.map */
