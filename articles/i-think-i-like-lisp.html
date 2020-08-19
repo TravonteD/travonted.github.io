@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>I think that I like LISP</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section class="article">
+<header id="title-block-header">
+<nav>
+  <a href="../index.html"><li>Travonte D.</li></a>
+  <a href="../index.html"><li>home</li></a>
+  <a href="../articles.html"><li>articles</li></a>
+  <a href="https://github.com/travonted"><li>github</li></a>
+</nav>
+<h1 class="title">I think that I like LISP</h1>
+</header>
+<p>Recently I’ve been utilizing <a href="https://neovim.io">Neovim’s</a> Lua integration for configuration. Most of the functions in my configuration have been converted. Then I saw a post on a Neovim plugin called <a href="https://github.com/olical/aniseed">Aniseed</a> that integrated <a href="https://fennel-lang.org">Fennel</a>. Naturally I looked up Fennel and discovered that it was a lisp-like language that compiled to Lua. I often see programmers that I follow like Robert Martin talk about how good the lisp syntax is, so I figured that I’d give it a try. When getting started I said to myself “I’m finally doing it! I’m finally giving lisp a shot!”, and to start I decided to rewrite one of my Lua functions in Fennel.</p>
+<p>Here is the function. It uses a library that wrote called <a href="https://github.com/travonted/luajob">Luajob</a> to asynchronously get the results of <code>git diff --shortstat</code>, and set them to a global variable for use elsewhere in my config.</p>
+<p>First let’s take a look at the Lua version:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">function</span> GitDiffStatus<span class="op">()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">local</span> job <span class="op">=</span> <span class="fu">require</span><span class="op">(</span><span class="st">&#39;luajob&#39;</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  job<span class="op">:</span>new<span class="op">({</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>      cmd <span class="op">=</span> <span class="st">&#39;git diff --shortstat&#39;</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>      on_stdout <span class="op">=</span> <span class="kw">function</span><span class="op">(</span>err<span class="op">,</span> data<span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        <span class="cf">if</span> <span class="kw">not</span> err <span class="cf">then</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>          <span class="cf">if</span> data <span class="cf">then</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>            <span class="kw">local</span> stats <span class="op">=</span> vim<span class="op">.</span>fn<span class="op">.</span>split<span class="op">(</span>data<span class="op">,</span> <span class="st">&#39;,&#39;</span><span class="op">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>            <span class="kw">local</span> changed<span class="op">,</span> inserted<span class="op">,</span> deleted <span class="op">=</span> <span class="st">&#39;0&#39;</span><span class="op">,</span> <span class="st">&#39;0&#39;</span><span class="op">,</span> <span class="st">&#39;0&#39;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>            <span class="cf">for</span> i<span class="op">,</span> stat <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span>stats<span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>              <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1</span> <span class="cf">then</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>                changed <span class="op">=</span> stat<span class="op">:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">&quot;%s*(%d+).*&quot;</span><span class="op">,</span> <span class="st">&quot;%1&quot;</span><span class="op">)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>              <span class="cf">elseif</span> i <span class="op">==</span> <span class="dv">2</span> <span class="cf">then</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>                inserted <span class="op">=</span> stat<span class="op">:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">&quot;%s*(%d+).*&quot;</span><span class="op">,</span> <span class="st">&quot;%1&quot;</span><span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>              <span class="cf">elseif</span> i <span class="op">==</span> <span class="dv">3</span> <span class="cf">then</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>                deleted <span class="op">=</span> stats<span class="op">[</span><span class="dv">3</span><span class="op">]:</span><span class="fu">gsub</span><span class="op">(</span><span class="st">&quot;%s*(%d+).*&quot;</span><span class="op">,</span> <span class="st">&quot;%1&quot;</span><span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>              <span class="cf">end</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>            <span class="cf">end</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>            vim<span class="op">.</span>g<span class="op">.</span>git_diff_status <span class="op">=</span> <span class="op">(</span><span class="st">&quot;~%s +%s -%s&quot;</span><span class="op">):</span><span class="fu">format</span><span class="op">(</span>changed<span class="op">,</span> inserted<span class="op">,</span> deleted<span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>          <span class="cf">end</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="cf">end</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>      <span class="kw">end</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="op">})</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>  job<span class="op">:</span>start<span class="op">()</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>This is pretty straight forward. We create a new job object and call “new” on it with a table of configuration. The “on_stdout” function checks for errors then parses out the values based on how many digits are given from <code>git</code></p>
+<p>Now let’s look at the Fennel version:</p>
+<pre class="fennel"><code>(global GitDiffStatus
+  (fn []
+    (let [job (require :luajob)]
+      (job:new {&quot;cmd&quot; &quot;git diff --shortstat&quot;
+                &quot;on_stdout&quot; (fn [err data]
+                              (if (not err)
+                                (if (not data)
+                                  (var stats (vim.fn.split data &quot;,&quot;))
+                                  (var (changed inserted deleted) (values &quot;0&quot; &quot;0&quot; &quot;0&quot;))
+                                  (each [i stat (ipairs stats)]
+                                    (match i
+                                      1 (set changed (stat:gsub &quot;%s*(%d+).*&quot; &quot;%1&quot;))
+                                      2 (set inserted (stat:gsub &quot;%s*(%d+).*&quot; &quot;%1&quot;))
+                                      3 (set deleted (string.gsub (. stats 3) &quot;%s*(%d+).*&quot; &quot;%1&quot;))))
+                                  (set vim.g.git_diff_status 
+                                       (string.format &quot;~%s +%s -%s&quot; changed inserted deleted)))))})
+      (job:start))))</code></pre>
+<p>This version takes a different form but is still relatively readable. One think that you will notice is that there are no commas or end lines. I think that this looks very clean. Another observation is the large use of parenthesis. While this can be confusing at first, it has a wonderful benefit. The different scopes are always clear, and it was this observation that made me start to like the lisp syntax.</p>
+<p>What I realized is that I’m not just looking at the code, I’m also looking at the syntax tree itself. In LISP you essentially edit the syntax-tree directly! This opens of a world of flexibility that, while not impossible in non-lisp-like languages, is available to the programmer right at the start!</p>
+<p>I proceeded to rewrite my entire Lua configuration in Fennel, and I enjoyed every bit of it. I enjoyed it so much that I even wrote a <a href="https://github.com/travonted/tree-sitter-fennel">treesitter parser</a> for it, so that I could have syntax aware highlighting. Using Fennel has led me into researching other lisps. It turns out that there seems to be a lisp-like language that has been implemented on top of many programming languages like [Clojure][clojure] (Java), [LFE][lfe] (Erlang), and many <a href="https://github.com/dundalek/awesome-lisp-languages">more</a></p>
+<p>So I guess I’m on the road to being a lisper. The rabbit hole only goes deeper.</p>
+</section>
+</body>
+</html>
