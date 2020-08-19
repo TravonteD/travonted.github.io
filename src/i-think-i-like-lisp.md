@@ -94,3 +94,5 @@ The rabbit hole only goes deeper.
 [luajob]: https://github.com/travonted/luajob
 [treesitter-fennel]: https://github.com/travonted/tree-sitter-fennel
 [lisp-like-languages]: https://github.com/dundalek/awesome-lisp-languages
+[clojure]: https://clojure.org
+[lfe]: https://lfe.io/
