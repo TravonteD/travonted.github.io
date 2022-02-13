@@ -1,70 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
+$base00: #1d2021;
+$base01: #383c3e;
+$base02: #53585b;
+$base03: #6f7579;
+$base04: #cdcdcd;
+$base05: #d5d5d5;
+$base06: #dddddd;
+$base07: #e5e5e5;
+$base08: #d72638;
+$base09: #eb8413;
+$base0A: #f19d1a;
+$base0B: #88b92d;
+$base0C: #1ba595;
+$base0D: #1e8bac;
+$base0E: #be4264;
+$base0F: #c85e0d;
 
 body {
-    width: 80%;
-    max-width: 800px;
+    width: 98%;
+    @media(min-width: 960px) {
+        width: 80%;
+        max-width: 800px;
+    }
     margin: auto;
-    font-family: "Zilla Slab", serif;
+    font-family: 'Space Mono', monospace;
 }
+
 body, a {
-    background-color: #eee;
-    color: #404040;
+    background-color: $base00;
+    color: $base05;
 }
 
 nav {
     text-align: center;
-    border-bottom: solid #EAEAEA 2px;
+    border-bottom: solid $base07 2px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     margin-bottom: 20px;
     a {
         li {
             display: inline-block;
-            padding: 20px;
             &:hover {
-                background-color: #404040;
-                color: #FFF;
+                color: $base0B;
             }
         }
     }
 }
-
-.article {
-    header {
-        margin-bottom: 20px;
-        .title {
-            text-align: center;
-        }
-    }
-    h2, p {
-        margin-bottom: 10px;
-    }
-    .sourceCode {
-        background-color: #EAEAEA;
-    }
+.sourceCode {
+    overflow: scroll;
+    background-color: #000;
 }
-
-.article-list {
-    &_title {
-        margin-bottom: 10px;
-    }
-    &_item {
-        list-style: none;
-        margin-bottom: 10px;
-    }
+.headshot {
+    max-width: 250px;
+    border-radius: 15%;
 }
-
-.bio {
-    margin: 20px auto;
-    p {
-        margin: 10px auto;
-    }
-    dt {
-        margin: 10px auto;
-        font-weight: 510;
-    }
+.center {
+    text-align: center;
 }
