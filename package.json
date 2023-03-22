@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write --plugin-search-dir=. ."
+  },
+  "dependencies": {
+    "astro": "^2.1.4",
+    "simpledotcss": "^2.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.6",
+    "prettier-plugin-astro": "^0.8.0"
+  }
+}
