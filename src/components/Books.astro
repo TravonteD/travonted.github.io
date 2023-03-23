@@ -4,11 +4,19 @@ const books = [
   { author: "Agatha Cristie", title: "And then there were None" },
   { author: "Agatha Cristie", title: "Death on the Nile" },
   { author: "Agatha Cristie", title: "The ABC Murders" },
-]
+];
 ---
+
 <section>
   <h5>Books that I've enjoyed</h5>
   <ul>
-    {books.map(b => <li>{b.author} - {b.title}</li>)}
-  <ul/>
+    {
+      books.map((b) => (
+        <li>
+          {b.author} - {b.title}
+        </li>
+      ))
+    }
+    <ul></ul>
+  </ul>
 </section>
