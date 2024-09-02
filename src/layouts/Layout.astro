@@ -1,5 +1,4 @@
 ---
-import "simpledotcss/simple.css";
 import Header from "../components/Header.astro";
 
 export interface Props {
@@ -14,8 +13,6 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-		<script src="https://cdn.tailwindcss.com"></script>
 		<link rel="stylesheet" href="style.css"/>
 		<title>{title}</title>
 	</head>
@@ -54,6 +51,7 @@ const { title } = Astro.props;
 			</div>
 			<div class="navbar-end"></div>
 		</nav>
+		<slot />
 	</body>
 </html>
 

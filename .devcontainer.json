@@ -1,0 +1,10 @@
+{
+  "name": "personal-site-dev",
+  "image": "node:18.17",
+  "containerUser": "",
+	"appPort": "3000:3000",
+  "postCreateCommand": "npm install",
+  "containerEnv": {
+  },
+  "runArgs": ["--network=host"]
+}
