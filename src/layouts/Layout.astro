@@ -11,22 +11,49 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Tray Dennis" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <h3>Tray D.</h3>
-    <nav>
-      <a href="/">Home</a>
-      <a href="https://github.com/travonted">Github</a>
-      <a href="mailto:tray@trayd.xyz">Email</a>
-    </nav>
-    <slot />
-    <footer></footer>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="style.css"/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<nav class="navbar bg-base-200">
+			<div class="navbar-start">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor">
+							<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h8m-8 6h16" />
+						</svg>
+					</div>
+					<ul
+						tabindex="0"
+						class="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+						<li><a href="https://github.com/travonted">[github]</a></li>
+						<li><a href="https://twitch.tv/dontgettrayd">[twitch]</a></li>
+					</ul>
+				</div>
+				<a class="btn btn-ghost text-xl" href="./index.html">[Work++]</a>
+			</div>
+			<div class="navbar-center hidden lg:flex">
+				<ul class="menu menu-horizontal px-1">
+					<li><a href="https://github.com/travonted">[github]</a></li>
+					<li><a href="https://twitch.tv/dontgettrayd">[twitch]</a></li>
+				</ul>
+			</div>
+			<div class="navbar-end"></div>
+		</nav>
+	</body>
 </html>
+

@@ -5,19 +5,18 @@ import Books from "../components/Books.astro";
 const posts = await Astro.glob("../pages/blog/*.md");
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Tray Dennis aka Work++">
   <main>
-    <section>
-      <h5>Blog Posts</h5>
-      <ul>
-        {
-          posts.map((post) => (
-            <li>
-              <a href={post.url}>{post.frontmatter.title}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+		<section class="hero bg-base-200 min-h-screen">
+			<div class="hero-content text-center">
+				<div class="max-w-md">
+					<h1 class="text-3xl font-bold">Tray Dennis</h1>
+					<div class="flex justify-center py-4">
+						<img src="headshot.jpg" class="rounded" width="200px"/>
+					</div>
+					<p class="py-6">Senior Software Engineer @ Doximity <br /> Co-Founder of Grantboost AI <br />Indie Hacker</p>
+				</div>
+			</div>
+		</section>
   </main>
 </Layout>
