@@ -3,7 +3,7 @@ layout: ../../layouts/Layout.astro
 title: Making a simple CRUD app with prisma-js
 ---
 
-# Making a simple CRUD app with prisma-js 
+# Making a simple CRUD app with prisma-js
 
 Recently one of my friends asked me for a recommendation on an ORM<sub>[1](#1)</sub>, and I recommended [Prisma][prisma]. He asked me for a real-world example of it's usage so I've decided to make this post so that he, and others can benefit.
 
