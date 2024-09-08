@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Books from "../components/Books.astro";
+
+const tools = {
+	general: [
+		{ category: "OS", tool: "Arch Linux / MacOS", url: "https://archlinux.org" },
+		{ category: "Editor", tool: "Neovim", url: "https://neovim.io" },
+		{ category: "Shell", tool: "Zshell", url: "https://zsh.org" },
+		{ category: "Terminal Emulator", tool: "Wezterm", url: "https://wezfurlong.org/wezterm/index.html" },
+		{ category: "Terminal Multiplexer", tool: "Tmux", url: "https://github.com/tmux/tmux/wiki" },
+		{ category: "Browser", tool: "Qutebrowser", url: "https://qutebrowser.org" },
+		{ category: "Media Player", tool: "MPV", url: "https://mpv.io" },
+	],
+	homelab: [
+		{ category: "Rss Aggregator", tool: "Miniflux", url: "https://miniflux.app" },
+		{ category: "Bookmark Tool", tool: "Readeck", url: "https://readeck.org" },
+		{ category: "Music Library", tool: "Navidrome", url: "https://navidrome.org" },
+		{ category: "VPN", tool: "Wireguard", url: "https://www.wireguard.com/"},
+	],
+	"CLI/TUI": [
+		{ category: "Filter Tool", tool: "FZF", url: "https://github.com/junegunn/fzf" },
+		{ category: "File Manager", tool: "LF", url: "https://github.com/gokcehan/lf" },
+		{ category: "Git Tool", tool: "Lazygit", url: "https://github.com/jesseduffield/lazygit" },
+		{ category: "Github Client", tool: "Github CLI", url: "https://cli.github.com" },
+		{ category: "Jira Client", tool: "Jira CLI", url: "https://github.com/ankitpokhrel/jira-cli" },
+		{ category: "Budget Tracker", tool: "Ledger CLI", url: "https://ledger-cli.org" },
+		{ category: "Directory Jumper", tool: "Zoxide", url: "https://github.com/ajeetdsouza/zoxide" },
+		{ category: "Docker Dev", tool: "Devcontainers via Devc", url: "https://github.com/travonted/devc" },
+	],
+};
+---
+
+<Layout title="Work++ - Uses">
+  <main>
+		<h1 class="text-center py-10 text-3xl">Software and Tools that I use</h1>
+		<section class="max-w-3xl m-auto mb-20">
+			{Object.keys(tools).map((category) => (
+				<div>
+					<h2 class="text-center py-10 text-3xl capitalize">{category}</h2>
+					<table class="table">
+						<thead class="text-xl">
+							<tr>
+								<th>Category</th>
+								<th class="text-right">Tool</th>
+							</tr>
+						</thead>
+						<tbody>
+							{tools[category].map((tool) => (
+								<tr>
+									<td>{tool.category}</td>
+									<td class="text-right link">
+										<a rel="external" href={tool.url} target="_blank">{tool.tool}</a>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			))}
+		</section>
+  </main>
+</Layout>
