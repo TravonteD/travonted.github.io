@@ -12,7 +12,6 @@ export async function GET() {
     misc: await post.compiledContent(),
   }))
   const posts = await Promise.all(blogPosts)
-  console.log(posts)
 
   return rss({
     title: "Tray Dennis",
