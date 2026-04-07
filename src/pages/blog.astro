@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const blogPostFiles = import.meta.glob("./blog/*.md", { eager: true });
+const blogPosts = Object.values(blogPostFiles).map((post: any) => ({
+  url: post.url,
+  title: post.frontmatter.title,
+}));
+
+---
+
+<Layout title="Work++ - Uses">
+  <main>
+		<h1 class="text-center py-10 text-3xl">Blog Posts</h1>
+		<section class="max-w-3xl m-auto mb-20">
+      <div>
+        <ul class="list-style-none">
+          {blogPosts.map((post) => (
+          <li class="py-4 hover:link"><a href={post.url}>{post.title}</a></li>
+          ))}
+        </ul>
+      </div>
+		</section>
+  </main>
+</Layout>
