@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/BlogPostLayout.astro
 title: Having fun with qr-codes
+date: 2026-04-07
 ---
 
 I had recently learned of a useful program for creating qr-codes called `qrencode`.
