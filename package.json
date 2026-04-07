@@ -1,21 +1,21 @@
 {
-  "name": "",
+  "name": "temp",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "format": "prettier --write --plugin-search-dir=. ."
+    "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.1.4",
-    "simpledotcss": "^2.2.0"
+    "@astrojs/check": "^0.9.5",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.6",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "prettier": "^2.8.6",
-    "prettier-plugin-astro": "^0.8.0"
+    "daisyui": "^5.5.3"
   }
 }
