@@ -5,7 +5,7 @@ const blogPostFiles = import.meta.glob("./blog/*.md", { eager: true });
 const blogPosts = Object.values(blogPostFiles).map((post: any) => ({
   url: post.url,
   title: post.frontmatter.title,
-  date: post.frontmatter.date,
+  date: post.frontmatter.date.toString().substring(0, 10),
 })).sort((a, b) => b.date.localeCompare(a.date));
 
 ---
@@ -17,7 +17,7 @@ const blogPosts = Object.values(blogPostFiles).map((post: any) => ({
       <div>
         <ul class="list-style-none">
           {blogPosts.map((post) => (
-          <li class="py-4 hover:link"><a href={post.url}>{post.title}</a></li>
+          <li class="py-4 hover:link">{post.date}&nbsp;<a href={post.url}>{post.title}</a></li>
           ))}
         </ul>
       </div>
