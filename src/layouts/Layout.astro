@@ -6,6 +6,29 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+const links = [
+  {
+    href: "/uses",
+    label: "[software I use]",
+    external: false,
+  },
+  {
+    href: "/blog",
+    label: "[blog]",
+    external: false,
+  },
+  {
+    href: "https://github.com/travonted",
+    label: "[github]",
+    external: true,
+  },
+  {
+    href: "https://twitch.tv/dontgettrayd",
+    label: "[twitch]",
+    external: true,
+  },
+]
 ---
 
 <!DOCTYPE html>
@@ -38,19 +61,18 @@ const { title } = Astro.props;
 					<ul
 						tabindex="0"
 						class="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-						<li><a href="/uses">[software I use]</a></li>
-						<li><a rel="external" href="https://github.com/travonted">[github]</a></li>
-						<li><a rel="external" href="https://twitch.tv/dontgettrayd">[twitch]</a></li>
+            {links.map((link) => (
+              <li><a rel={(link.external) ? 'rel="external"' : ''} href={link.href}>{link.label}</a></li>
+              ))}
 					</ul>
 				</div>
 				<a class="btn btn-ghost text-xl" href="/index.html">[Work++]</a>
 			</div>
 			<div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-          <li><a href="/uses">[software I use]</a></li>
-          <li><a href="/blog">[blog]</a></li>
-          <li><a rel="external" href="https://github.com/travonted">[github]</a></li>
-          <li><a rel="external" href="https://twitch.tv/dontgettrayd">[twitch]</a></li>
+          {links.map((link) => (
+            <li><a rel={(link.external) ? 'external' : ''} href={link.href}>{link.label}</a></li>
+          ))}
         </ul>
 			</div>
 			<div class="navbar-end"></div>
